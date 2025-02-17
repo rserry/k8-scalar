@@ -70,3 +70,14 @@ spec:
             - /ready-probe.sh
           initialDelaySeconds: 15
           timeoutSeconds: 5
+        volumeMounts:
+        - name: cassandra-data
+          mountPath: /var/lib/cassandra
+  volumeClaimTemplates:
+  - metadata:
+      name: cassandra-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
